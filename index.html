@@ -1,0 +1,44 @@
+<link href="style.css" rel="stylesheet"></link>
+<script src="script.js"> </script>
+<title>LVM to Human</title>
+<div id="outer">
+    <div id="main">
+        <br />
+        <h1>LVM Viewer</h1>
+        <br />
+        Copy and paste the requested output into each textbox.
+        <br /><br />
+        <br />
+        <div id="pvs_box" class="spanner">
+            Physical Volumes
+            <br />
+            <textarea id="pvs" placeholder="pvdisplay -c"></textarea>
+            <br /><code>(pvdisplay -c)</code>
+        </div>
+        <br />
+        <div id="vgs_box" class="spanner">
+            Volume Groups
+            <br />
+            <textarea type="text" id="vgs" placeholder="vgdisplay -c"></textarea>
+            <br /><code>(vgdisplay -c)</code>
+        </div>
+        <br />
+        <div id="lvs_box" class="spanner">
+            Logical Volumes
+            <br />
+            <textarea type="text" id="lvs" placeholder="lvdisplay -c"></textarea>
+            <br /><code>(lvdisplay -c)</code>
+        </div>
+        <br />
+        <div id="fs_box" class="spanner">
+            File Systems
+            <br />
+            <textarea type="text" id="fss" placeholder="blkid"></textarea>
+            <br /><code>(blkid)</code>
+        </div>
+        <br />
+        <input type="submit" id="go" onclick="go()" value="View LVM" />
+        <br />
+        <br />
+    </div>
+</div>

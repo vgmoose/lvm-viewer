@@ -1,0 +1,65 @@
+#main
+{
+    width: 100%;
+    text-align: center;
+}
+
+#outer
+{
+    width: 600px;
+    margin: auto;
+    background-color: #c5e0ff;
+    border-radius: 10px;
+}
+
+#pvs_box
+{
+    background-color: #deffdf;
+}
+
+#vgs_box
+{
+    background-color: #ffffde;
+}
+
+#lvs_box
+{
+    background-color: #ffdef3;
+}
+
+#fs_box
+{
+    background-color: #dee3ff;
+}
+
+.spanner
+{
+    width: 450px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+body
+{
+    font-family: helvetica, arial;
+    color: gray;
+}
+
+input
+{
+    font-family: courier, monospace;
+}
+
+.spanner
+{
+    font-size: 12px;
+    font-weight: bold;
+    color: gray;
+}
+
+textarea
+{
+    height: 20px;
+    width: 200px;
+    max-width: 400px;
+}
