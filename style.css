@@ -2,14 +2,14 @@
 {
     width: 100%;
     text-align: center;
+    background-color: #c5e0ff;
+    border-radius: 10px;
 }
 
 #outer
 {
     width: 600px;
     margin: auto;
-    background-color: #c5e0ff;
-    border-radius: 10px;
 }
 
 #pvs_box
