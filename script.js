@@ -3,6 +3,32 @@ function go()
     location.hash = "/" + document.getElementById('pvs').value.split("\n").join("#n") + "#/" + document.getElementById('vgs').value.split("\n").join("#n") + "#/" + document.getElementById('lvs').value.split("\n").join("#n") + "#/" + document.getElementById('fss').value.split("\n").join("#n");
 }
 
+function snap()
+{
+    document.getElementById('snap').setAttribute("type", "hidden");
+    document.getElementById('redo').setAttribute("type", "hidden");
+    
+    if (document.getElementById('header').innerHTML == "<h2>LVM Viewer</h2>")
+        document.getElementById('header').innerHTML = "<br><br>";
+    
+    html2canvas(document.getElementById('main'), {
+                onrendered: function(canvas) {
+                window.open(canvas.toDataURL(), "_blank");
+                document.getElementById('snap').setAttribute("type", "submit");
+                document.getElementById('redo').setAttribute("type", "submit");
+                
+                if (document.getElementById('header').innerHTML == "<br><br>")
+                    document.getElementById('header').innerHTML = "<h2>LVM Viewer</h2>";
+                }
+                });
+
+}
+
+function redo()
+{
+    location.href = location.pathname;
+}
+
 function info()
 {
     var string = "";
@@ -13,15 +39,50 @@ function info()
     return string;
 }
 
+function keyDown(e)
+{
+    if (e.keyCode == 13)
+        submitTitle();
+}
+
+function submitTitle()
+{
+    if (document.getElementById('typetitle').value == "")
+        return;
+    
+    document.getElementById('header').innerHTML = "<h2>"+document.getElementById('typetitle').value+"</h2>";
+    setTimeout("document.getElementById('header').onclick = titleH2;", 100);
+    
+}
+
+function titleH2()
+{
+    this.onclick = null;
+    this.innerHTML = "<br /><input type='text' id='typetitle' placeholder='echo \"LVM Setup for $(hostname)\"' style='width:250px;'></input><input type='submit' value='Set' id='sub2' onclick='submitTitle()'></input><br /><br />";
+    document.getElementById('typetitle').focus();
+    document.getElementById('typetitle').onkeydown = keyDown;
+    
+}
+
 function loadLVM()
 {
     if (location.hash != "" && location.hash != "#")
     {
-        var strings = location.hash.split("#/");
-        document.getElementById('main').style.backgroundColor = "white";
+        document.getElementById('header').innerHTML = "<h2>LVM Viewer</h2>";
         
+        document.getElementById('header').onclick = titleH2;
+        
+        var vgsElement = document.getElementById('vgs').parentElement;
+        var lvsElement = document.getElementById('lvs').parentElement;
+        var pvsElement = document.getElementById('pvs').parentElement;
+        var fssElement = document.getElementById('fss').parentElement;
+        
+        var strings = location.hash.split("#/");
+//        document.getElementById('main').style.backgroundColor = "white";
+        
+        // Volume Groups
         var vgsdata = strings[2].replace(/ /g, "").split("#n");
-        vgs = [];
+        var vgs = [];
         
         vgs.info = info;
 
@@ -40,9 +101,42 @@ function loadLVM()
             
         }
         
-        console.log(vgs);
-        document.getElementById('main').innerHTML = vgs.info();
+        // Physical Volumes
+        var pvsdata = strings[1].replace(/ /g, "").split("#n");
+        var pvs = [];
         
+        pvs.info = info;
+        
+        for (var x=0; x<pvsdata.length; x++)
+        {
+            var cur = pvsdata[x].split(":");
+            
+            if (cur == "")
+                continue;
+            
+            var vol = {};
+            vol.name = cur[0];
+            vol.size = cur[2];
+            
+            pvs.push(vol);
+            
+        }
+
+        var a = document.getElementById('main');
+        
+//        document.getElementById('vgs_box')
+        
+        document.getElementById('go').setAttribute("type", "hidden");
+        document.getElementById('snap').setAttribute("type", "submit");
+        document.getElementById('redo').setAttribute("type", "submit");
+        
+        vgsElement.className += " volume_view";
+        lvsElement.className += " volume_view";
+        pvsElement.className += " volume_view";
+        fssElement.className += " volume_view";
+        
+        
+//
 //        var pvs = strings[1].split(":");
 //        var vgs = strings[2].split(":");
 //        var lvs = strings[3].split(":");

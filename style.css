@@ -34,15 +34,46 @@
 
 .spanner
 {
-    width: 450px;
+    width: 520px;
+    height: 50px;
     margin: auto;
     border-radius: 10px;
+}
+
+.label
+{
+    float: left;
+    width: 100px;
+    text-align: left;
+    font-size: 10px;
+    padding-left: 8px;
+    padding-top: 2px;
+}
+
+.inner_span
+{
+    float: left;
+    width: 390px;
+    margin-top: 8px;
+    height: 32px;
+}
+
+.volume_view
+{
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #b4b4b4;
 }
 
 body
 {
     font-family: helvetica, arial;
     color: gray;
+}
+
+input[type=text]
+{
+    width: 300px;
 }
 
 input
@@ -53,13 +84,5 @@ input
 .spanner
 {
     font-size: 12px;
-    font-weight: bold;
     color: gray;
-}
-
-textarea
-{
-    height: 20px;
-    width: 200px;
-    max-width: 400px;
 }
