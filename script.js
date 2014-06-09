@@ -77,7 +77,10 @@ function loadLVM()
         var pvsElement = document.getElementById('pvs').parentElement;
         var fssElement = document.getElementById('fss').parentElement;
         
-        var strings = location.hash.split("#/");
+        
+        
+        var strings = location.hash.replace(/%20/g, " ");
+        strings =strings.split("#/");
 //        document.getElementById('main').style.backgroundColor = "white";
         
         // Volume Groups
