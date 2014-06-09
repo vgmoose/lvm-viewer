@@ -12,6 +12,14 @@
     margin: auto;
 }
 
+a
+{
+    color: #388dee;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 11px;
+}
+
 #pvs_box
 {
     background-color: #deffdf;
@@ -63,6 +71,19 @@
     background-color: white;
     border-radius: 5px;
     border: 1px solid #b4b4b4;
+    line-height: 29px;
+}
+
+.vol
+{
+    float: left;
+    height: 32px;
+}
+  
+.spacer
+{
+    border-right: 1px solid #b4b4b4;
+    width: 0px;
 }
 
 body
@@ -76,9 +97,15 @@ input[type=text]
     width: 300px;
 }
 
-input
+input, textarea
 {
     font-family: courier, monospace;
+}
+
+textarea
+{
+    height: 12px;
+    width: 300px;
 }
 
 .spanner

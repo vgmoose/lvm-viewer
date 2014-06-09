@@ -89,7 +89,7 @@ function loadLVM()
         for (var x=0; x<vgsdata.length; x++)
         {
             var cur = vgsdata[x].split(":");
-            
+
             if (cur == "")
                 continue;
             
@@ -100,6 +100,8 @@ function loadLVM()
             vgs.push(vol);
             
         }
+        
+        console.log(vgs);
         
         // Physical Volumes
         var pvsdata = strings[1].replace(/ /g, "").split("#n");
@@ -134,6 +136,38 @@ function loadLVM()
         lvsElement.className += " volume_view";
         pvsElement.className += " volume_view";
         fssElement.className += " volume_view";
+        
+        var sumvg = 0;
+        
+        for (var x=0; x<vgs.length; x++)
+        {
+            sumvg += parseInt(vgs[x].size);
+            vgs[x].gbsize = Math.round(parseInt(vgs[x].size)/1048576);
+        }
+        
+        var output = "";
+        
+        for (var x=0; x<vgs.length; x++)
+        {
+            var percent = (parseInt(vgs[x].size) / sumvg) * 390 - 1;
+            console.log((parseInt(vgs[x].size) / sumvg));
+
+            output += "<div class='vol' style='width:"+percent;
+            output += "px'><a href='aa'>";
+            output += vgs[x].name +" (" + vgs[x].gbsize + " GB)</a></div>";
+            
+            if ((x+1) != vgs.length)
+                output += "<div class='vol spacer'></div>";
+        }
+        
+        console.log(output);
+        vgsElement.innerHTML = output;
+        
+//        vgsElement.innerHTML = "<div class='vol' style='width:260px'><a href='aa'>purin (250 GB)</a></div><div class='vol spacer'></div><div class='vol' style='width:129px'><a href='aa'>yume (40 GB)</a></div>";
+        lvsElement.innerHTML = "";
+        pvsElement.innerHTML = "";
+        fssElement.innerHTML = "";
+        
         
         
 //
